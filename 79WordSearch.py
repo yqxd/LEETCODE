@@ -25,3 +25,8 @@ class Solution(object):
         :type word: str
         :rtype: bool
         """
+
+A = Solution()
+board =
+word =
+print(A.exist())
