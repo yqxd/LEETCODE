@@ -27,6 +27,4 @@ class Solution(object):
         """
 
 A = Solution()
-board =1
-word = 2
 print(A.exist())
