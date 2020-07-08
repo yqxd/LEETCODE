@@ -22,13 +22,53 @@ class Solution(object):
         :type x: int
         :rtype: ListNode
         """
+        smallhead = None
+        largehead = None
+        nowsmall = None
+        nowlarge = None
         now = head
         while now != None:
-            next = now.next
-            if now.val >= x:
-                now.next = largenode
-                largenode = now
+            if now.val < x:
+                if smallhead == None:
+                    smallhead = now
+                    nowsmall = now
+                else:
+                    nowsmall.next = now
+                    nowsmall = now
             else:
-                now.next = smallnode
-                smallnode = now
-            now = next
+                if largehead == None:
+                    largehead = now
+                    nowlarge = now
+                else:
+                    nowlarge.next = now
+                    nowlarge = now
+            now = now.next
+        if nowlarge == None:
+            return smallhead
+        elif nowsmall == None:
+            return largehead
+        else:
+            nowlarge.next = None
+            nowsmall.next = largehead
+            return smallhead
+
+
+a = ListNode(2)
+b = ListNode(1)
+c = ListNode(2)
+d = ListNode(5)
+e = ListNode(3)
+
+a.next = b
+b.next = None
+c.next = d
+d.next = e
+
+A = Solution()
+a = A.partition(a, 2)
+while a != None:
+    print(a.val)
+    a = a.next
+
+
+
