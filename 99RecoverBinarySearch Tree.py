@@ -58,5 +58,24 @@ class Solution(object):
         :type root: TreeNode
         :rtype: None Do not return anything, modify root in-place instead.
         """
+        self.swap1, self.swap2, self.inter = None, None, None
+        self.helper(root)
+        self.swap1.val, self.swap2.val = self.swap2.val, self.swap1.val
+        return
 
+    def helper(self, node):
+        if not node: return
+
+        self.helper(node.left)
+
+        if self.inter and node.val < self.inter.val:
+            self.swap1 = node
+            if not self.swap2:
+                self.swap2 = self.inter
+            else:
+                return
+
+        self.inter = node
+        self.helper(node.right)
+        return
         
